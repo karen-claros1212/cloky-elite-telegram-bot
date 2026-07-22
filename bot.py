@@ -142,6 +142,87 @@ USER_MODES_FILE = STATE_DIR / "user_modes.json"            # v1.8: modo activo p
 LAST_PROMPT_FILE = STATE_DIR / "last_prompts.json"         # v1.8: último prompt por usuario para Plan→Approve
 START_TIME = time.time()                         # v1.4: para /uptime
 
+# v2.2.2: Instancia única con flock
+LOCK_FILE = STATE_DIR / "bot.lock"
+
+# v2.2.2: Offset persistente para getUpdates
+OFFSET_FILE = STATE_DIR / "telegram_offset.json"
+
+# v2.2.2: Dead-letter queue para actualizaciones perdidas por conflicto 409
+DEAD_LETTER_FILE = STATE_DIR / "dead_letter.json"
+
+# v2.2.2: Instancia única con flock
+_lock_fd = None
+def acquire_instance_lock() -> None:
+    """Adquiere un flock exclusivo. Si otro proceso ya lo tiene, sale."""
+    global _lock_fd
+    try:
+        _lock_fd = open(LOCK_FILE, "w")
+        fcntl.flock(_lock_fd.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        _lock_fd.write(str(os.getpid()) + "\n")
+        _lock_fd.flush()
+        os.fsync(_lock_fd.fileno())
+    except (IOError, OSError):
+        if _lock_fd:
+            _lock_fd.close()
+        _lock_fd = None
+        log("FATAL: otra instancia de bot.py ya está corriendo (flock)")
+        sys.exit(1)
+
+def release_instance_lock() -> None:
+    """Libera el flock exclusivo."""
+    global _lock_fd
+    if _lock_fd:
+        try:
+            fcntl.flock(_lock_fd.fileno(), fcntl.LOCK_UN)
+            _lock_fd.close()
+        except Exception:
+            pass
+        _lock_fd = None
+
+# v2.2.2: Offset persistente para getUpdates
+def load_offset() -> int:
+    """Carga el último offset procesado."""
+    try:
+        if OFFSET_FILE.exists():
+            data = json.loads(OFFSET_FILE.read_text())
+            return int(data.get("offset", 0))
+    except Exception:
+        pass
+    return 0
+
+def save_offset(offset: int) -> None:
+    """Persiste el offset con write-temp-rename atómico."""
+    try:
+        tmp = OFFSET_FILE.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"offset": offset}))
+        tmp.replace(OFFSET_FILE)
+    except Exception:
+        pass
+
+# v2.2.2: Dead-letter queue
+def load_dead_letter() -> list[dict]:
+    """Carga actualizaciones no procesadas."""
+    try:
+        if DEAD_LETTER_FILE.exists():
+            return json.loads(DEAD_LETTER_FILE.read_text())
+    except Exception:
+        pass
+    return []
+
+def append_dead_letter(updates: list[dict]) -> None:
+    """Agrega actualizaciones perdidas a la dead-letter queue."""
+    if not updates:
+        return
+    existing = load_dead_letter()
+    existing.extend(updates)
+    try:
+        tmp = DEAD_LETTER_FILE.with_suffix(".tmp")
+        tmp.write_text(json.dumps(existing))
+        tmp.replace(DEAD_LETTER_FILE)
+    except Exception:
+        pass
+
 # v1.4: Rotación de logs
 LOG_MAX_BYTES = 10 * 1024 * 1024                 # 10 MB por archivo
 LOG_BACKUP_COUNT = 3                             # bot.log + .1 + .2 + .3
@@ -521,18 +602,27 @@ def telegram_api(method: str, payload: dict[str, Any], timeout: int = 60) -> dic
     """
     v1.6.1 IMP-1: retry x3 con backoff exponencial para errores transitorios.
     Errores no recuperables (400, 401, 403, 404) NO se reintentan.
+    v2.2.2: 409 Conflict se reintentan con backoff exponencial (conflicto de getUpdates).
     """
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/{method}"
     data = json.dumps(payload).encode("utf-8")
     headers = {"Content-Type": "application/json", "User-Agent": f"cloky-bot/{VERSION}"}
 
     last_exc: Exception | None = None
-    for attempt in range(3):
+    for attempt in range(5):  # v2.2.2: más intentos para 409
         try:
             req = urllib.request.Request(url, data=data, headers=headers, method="POST")
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 return json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
+            # 409 Conflict: conflicto de getUpdates — reintentar con backoff
+            if exc.code == 409:
+                last_exc = exc
+                log(f"TELEGRAM_API_409_RETRY method={method} attempt={attempt+1}/5")
+                # Backoff exponencial más largo para 409: 2s, 6s, 18s, 54s, 162s
+                if attempt < 4:
+                    time.sleep(2 * (3 ** attempt))
+                continue
             # 4xx no recuperables — no reintentar
             if 400 <= exc.code < 500 and exc.code not in (408, 429):
                 try:
@@ -543,16 +633,16 @@ def telegram_api(method: str, payload: dict[str, Any], timeout: int = 60) -> dic
                 return {"ok": False, "error_code": exc.code, "description": body}
             # 408, 429, 5xx → reintentar
             last_exc = exc
-            log(f"TELEGRAM_API_RETRY method={method} attempt={attempt+1}/3 code={exc.code}")
+            log(f"TELEGRAM_API_RETRY method={method} attempt={attempt+1}/5 code={exc.code}")
         except (urllib.error.URLError, OSError, json.JSONDecodeError) as exc:
             last_exc = exc
-            log(f"TELEGRAM_API_RETRY method={method} attempt={attempt+1}/3 error={type(exc).__name__}: {exc}")
+            log(f"TELEGRAM_API_RETRY method={method} attempt={attempt+1}/5 error={type(exc).__name__}: {exc}")
 
-        # Backoff exponencial: 0.5s, 1.5s, 4.5s
-        if attempt < 2:
+        # Backoff exponencial: 0.5s, 1.5s, 4.5s, 13.5s, 40.5s
+        if attempt < 4:
             time.sleep(0.5 * (3 ** attempt))
 
-    log(f"TELEGRAM_API_GAVE_UP method={method} after 3 attempts: {last_exc!r}")
+    log(f"TELEGRAM_API_GAVE_UP method={method} after 5 attempts: {last_exc!r}")
     return {"ok": False, "error": repr(last_exc)}
 
 
@@ -3828,7 +3918,28 @@ def main() -> None:
     # v1.4 S1.12 + S1.13: validar entorno
     preflight_checks()
 
-    offset: int | None = None
+    # v2.2.2: Instancia única
+    acquire_instance_lock()
+
+    # v2.2.2: Cargar offset persistente + dead-letter
+    offset = load_offset()
+    dead = load_dead_letter()
+    if dead:
+        log(f"REPLAYING {len(dead)} dead-letter updates")
+        for update in dead:
+            try:
+                handle_update(update)
+                offset = int(update["update_id"]) + 1
+            except Exception as exc:
+                log(f"DEAD_LETTER_ERROR update_id={update.get('update_id')} error={type(exc).__name__}: {exc}")
+        # Limpiar dead-letter después de procesar
+        try:
+            DEAD_LETTER_FILE.unlink()
+        except Exception:
+            pass
+
+    # v2.2.2: Guardar offset inicial
+    save_offset(offset)
 
     me = telegram_api("getMe", {}, timeout=20)
     log(f"TELEGRAM_GETME {me}")
@@ -3845,6 +3956,8 @@ def main() -> None:
                     break
                 offset = int(update["update_id"]) + 1
                 handle_update(update)
+                # Persistir offset después de cada actualización procesada
+                save_offset(offset)
         except KeyboardInterrupt:
             log("STOP KeyboardInterrupt")
             break
@@ -3864,6 +3977,8 @@ def main() -> None:
                 task.process.terminate()
         except Exception:
             pass
+    # v2.2.2: Liberar instancia única
+    release_instance_lock()
     log("STOPPED")
 
 
