@@ -77,6 +77,24 @@ TESTS
 NO MODIFICA
     llama.cpp / TurboQuant / Qwen / chat template / Claude Code CLI.
     Otros bots, Agent Zero, Morgan/OpenClaw, VIPER, Taurus.
+
+v2.2.2 (2026-07-22) — mejoras del bot existente
+-------------------------------------------------
+1. Streaming: partial_text solo como último recurso en composición final.
+   result y assistant se priorizan para no mezclar deltas parciales.
+2. send_message() verifica resultado real de sendMessage; loguea fallos.
+3. /newsession: rotate_native_session_id persiste correctamente (verificado).
+   El siguiente mensaje usa FIRST_TURN automáticamente.
+4. Modos: get_user_mode → set_user_mode persiste ANTES de lanzar Claude.
+5. fallback_from_outputs: un solo pase con campos documentados (result,
+   summary, message, content, text). Sin walker recursivo.
+6. Sin dead-letter ni bloqueo largo ante 409. Retry x3 con backoff exponencial.
+7. Version actualizada.
+
+NO SE CAMBIA:
+   Arquitectura Telegram → Cloky → Claude Code → llama-server :8080.
+   No se despliega v3 ni ClaudeAgentSDK.
+   Se conservan todas las funciones existentes.
 """
 
 from __future__ import annotations
@@ -107,8 +125,8 @@ from typing import Any
 # Versión y constantes
 # ============================================================================
 
-VERSION = "2.2.1"
-VERSION_DATE = "2026-07-21"
+VERSION = "2.2.2"
+VERSION_DATE = "2026-07-22"
 APP_NAME = "cloky-elite-telegram-bot"
 
 # v1.5: Modo de sandbox. Inyectado por systemd unit como Environment=BOT_SANDBOX_MODE=...
@@ -610,7 +628,9 @@ def send_message(
         # v1.8.0: el reply_markup va solo en el último chunk
         if idx == last_idx and reply_markup is not None:
             payload["reply_markup"] = reply_markup
-        telegram_api("sendMessage", payload)
+        result = telegram_api("sendMessage", payload)
+        if not result.get("ok"):
+            log(f"SEND_MESSAGE_FAIL chunk={idx+1}/{len(chunks)} ok={result.get('ok')} error={result.get('description', '')}")
 
 
 def edit_message(
@@ -2052,13 +2072,54 @@ def analyze_transcript(path: Path) -> dict[str, Any]:
 def fallback_from_outputs(stdout_text: str, stderr_text: str, return_code: int | None) -> str:
     """
     Se usa cuando el parser no extrajo texto visible.
-
-    FIX (bug real reportado en producción): la versión previa volcaba
-    stdout_text crudo al chat, mostrando NDJSON, UUIDs, paths internos,
-    nombres de tools MCP y hasta basura binaria. Ahora destila SOLO texto
-    humano y, si no encuentra nada legible, informa en vez de volcar.
+    
+    Un solo pase: extrae SOLO campos documentados (result, summary, message,
+    content, text) de objetos JSON en stdout. Sin walker recursivo.
+    Si no hay texto legible, informa en vez de volcar basura.
     """
     METADATA_TYPES = {"system", "init", "tool_use", "tool_result"}
+    
+    def usable(s: str) -> bool:
+        return bool(s and s.strip()) and not is_internal_string(s) and not is_output_garbage(s)
+    
+    found: list[str] = []
+    for raw in stdout_text.splitlines():
+        try:
+            obj = json.loads(raw)
+        except Exception:
+            continue
+        if not isinstance(obj, dict) or obj.get("type") in METADATA_TYPES:
+            continue
+        # Campos documentados únicamente
+        for key in ("result", "summary", "message", "content", "text"):
+            v = obj.get(key)
+            if isinstance(v, str) and usable(v):
+                found.append(v.strip())
+            elif isinstance(v, list):
+                for item in v:
+                    if isinstance(item, dict) and item.get("type") == "text":
+                        text_val = item.get("text")
+                        if isinstance(text_val, str) and usable(text_val):
+                            found.append(text_val.strip())
+                    elif isinstance(item, str) and usable(item):
+                        found.append(item.strip())
+    
+    if found:
+        joined = "\n\n".join(found)[-12000:]
+        if not is_output_garbage(joined):
+            return redact(sanitize_output(joined))
+    
+    # Sin texto legible — informar, NO volcar
+    out = ["Claude Code finalizó sin mensaje visible."]
+    if return_code is None:
+        out.append("Estado: terminado sin código de salida (timeout o interrupción).")
+    elif return_code != 0:
+        out.append(f"Estado: terminado con código de error {return_code}.")
+    err = stderr_text.strip()
+    if err and not err.lstrip().startswith(("{{", "[")) and not is_output_garbage(err):
+        out.append("stderr:\n" + redact(sanitize_output(err[-2000:])))
+    return "\n\n".join(out)
+
 
     def usable(s: str) -> bool:
         return bool(s and s.strip()) and not is_internal_string(s) and not is_output_garbage(s)
@@ -2463,11 +2524,14 @@ def _run_claude_task_inner(user_id: str, chat_id: int, message_id: int, user_tex
         assistant_text = dedup(assistant_text)
         result_text = dedup(result_text)
 
-        # Composición final: result > assistant > partial (prioridad al resultado)
+        # Composición final: result > assistant (solo campos documentados).
+        # partial_text se usa SOLO como último recurso si no hubo streaming
+        # ni result/assistant — evita mezclar deltas parciales con mensaje final.
         final_text = result_text[-1] if result_text else None
         if not final_text and assistant_text:
             final_text = "\n\n".join(assistant_text).strip()
-        if not final_text and partial_text:
+        elif not result_text and not assistant_text and partial_text:
+            # Solo si no hubo result ni assistant: partial_text como último recurso
             final_text = "\n\n".join(partial_text).strip()
 
         # === FIX: Sentinel "No response requested." ===

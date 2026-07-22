@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# install_service.sh — Cloky Elite Telegram Bot v2.2.1
+# install_service.sh — Cloky Elite Telegram Bot v2.2.2
 #
 # Arquitectura: Telegram → bot.py → Claude Code CLI → llama-server :8080
 # Sin proxy intermedio. Sin adapter_proxy.py.
@@ -32,7 +32,7 @@ case "$SANDBOX_MODE" in
 esac
 
 echo "============================================================"
-echo "  Cloky Bot v2.2.1"
+echo "  Cloky Bot v2.2.2"
 echo "============================================================"
 
 mkdir -p "$SERVICE_DIR"
@@ -164,7 +164,7 @@ fi
 # --- Generar unit file ---
 cat > "$SERVICE_FILE" <<EOF
 [Unit]
-Description=Cloky Elite Telegram Bot v2.2.1 — Claude Code local bridge
+Description=Cloky Elite Telegram Bot v2.2.2 — Claude Code local bridge
 After=network.target
 Documentation=https://github.com/anthropics/claude-code
 

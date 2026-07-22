@@ -365,7 +365,7 @@ class TestConstruccionDelComando(unittest.TestCase):
 
 class TestBackwardCompat(unittest.TestCase):
     def test_version(self):
-        self.assertEqual(bot.VERSION, "2.2.1")
+        self.assertEqual(bot.VERSION, "2.2.2")
 
     def test_redaccion_de_secretos(self):
         self.assertEqual(bot.redact("sk-morgan-fake-12345"), "[REDACTED]")
