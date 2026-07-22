@@ -1,0 +1,236 @@
+- nexus-ai/app/config/nexus.php (payroll config section)
+
+───
+
+FASE 4 — AI Layer (cloud LLMs: DeepSeek, OpenAI, Anthropic, Qwen) ✅ COMPLETADA (2026-05-26)
+  + useStreamBuffer hook — React hook para streaming LLM con buffer typewriter
+    * delay, interval, batchSize configurables
+    * pushToken(), startStream(), stopStream(), reset()
+    * Manejo de abort (interrumpir respuesta)
+  + useSSEStream hook — Conector SSE con ReadableStream
+    * POST /api/chat/stream con fetch + ReadableStream
+    * Parseo de eventos SSE (data: JSON)
+    * Soporte [DONE] end marker
+    * onToken, onDone, onError callbacks
+  + StreamClient — Cliente de streaming frontend
+    * connect(), disconnect(), streaming getter
+    * createChatSession() — sesion completa de chat con streaming
+    * Manejo de CSRF token
+    * AbortController para interrupcion
+  + AIStatusLottie — Componente de animaciones AI
+    * 4 estados: thinking, processing, ready, error
+    * Animaciones Lottie inline (sin dependencias externas)
+    * thinking: 3 dots pulsando secuencialmente
+    * processing: spinner rotativo
+    * ready: checkmark verde
+    * error: X mark roja
+    * Colores y labels por estado
+  + ChatController::chatStream() — Endpoint SSE backend
+    * POST /api/chat/stream
+    * Recibe messages array
+    * Stream tokens con metadata (model, provider)
+    * Guarda respuesta completa en DB
+    * Headers SSE correctos (no-cache, no-buffer)
+
+FILES CREATED:
+- nexus-ai/frontend/hooks/useStreamBuffer.ts (hook buffer typewriter, 180 lines)
+- nexus-ai/frontend/lib/streamClient.ts (cliente SSE/Stream, 200 lines)
+- nexus-ai/frontend/components/AIStatusLottie.tsx (animaciones AI, 250 lines)
+- nexus-ai/app/app/Http/Controllers/Api/ChatController.php (chatStream endpoint)
+- nexus-ai/app/routes/api.php (POST /api/chat/stream added)
+
+───
+
+FASE 5 — Modulos Verticales ✅ COMPLETADA (2026-05-26)
+  + TallerModule — Taller Mecanico
+    * 5 tablas DDL: vehiculos, ordenes, orden_repuestos, cotizaciones, inventario_repuestos
+    * 10 permisos: taller.view, create, edit, delete, vehicles, parts, quotes, orders, orders.complete, reports
+    * Flujos: diagnostico -> cotizacion -> aprobacion -> ejecucion -> entrega
+    * Control de kilometraje, nivel combustible, repuestos por orden
+  + FarmaciaModule — Farmacia con control INVIMA
+    * 5 tablas DDL: productos, lotes, ventas, venta_detalle, alertas_vencimiento
+    * 10 permisos: farmacia.view, create, edit, delete, sales, lots, inventory, reports, pharmacy, expired_alerts
+    * Control de lotes, vencimientos, farmaceutico responsable
+    * Registro INVIMA por producto, control de recetas
+  + RestauranteModule — Restaurante con comandas y KDS
+    * 6 tablas DDL: mesas, menu_categorias, menu_items, comandas, comanda_items, inventario_cocina
+    * 10 permisos: rest.view, create, edit, delete, orders, kitchen, menu, tables, inventory, reports, billing
+    * Flujo: mesa -> comanda -> items -> cocina -> servicio -> cierre
+    * Estados de comanda: pendiente, en_preparacion, listo, servido
+  + HotelModule — Hotel con reservas y frente de caja
+    * 5 tablas DDL: habitaciones, reservas, huespedes, estadia_detalle, movimientos_caja
+    * 12 permisos: hotel.view, create, edit, delete, reservations, rooms, guests, frontdesk, reports, billing, checkin, checkout
+    * Tipos: simple, doble, suite, suite_presidencial, familiar, accessible
+    * Estados habitacion: disponible, ocupada, limpieza, mantenimiento, reservada
+    * Estados reserva: pendiente, confirmada, checkin, checkout, cancelada, no_show
+
+ModuleServiceProvider actualizado para registrar los 4 modulos verticales.
+
+FILES CREATED:
+- nexus-ai/app/app/Modules/TallerModule.php (taller mecanico, 150 lines)
+- nexus-ai/app/app/Modules/FarmaciaModule.php (farmacia INVIMA, 150 lines)
+- nexus-ai/app/app/Modules/RestauranteModule.php (restaurante comandas, 160 lines)
+- nexus-ai/app/app/Modules/HotelModule.php (hotel reservas, 150 lines)
+- nexus-ai/app/app/Providers/ModuleServiceProvider.php (4 modulos registrados)
+
+───
+
+FASE 5 — AI Layer FastAPI ✅ COMPLETADA (2026-05-26)
+  + Microservicio FastAPI completo (nexus_ai/)
+  + LLMRouter — seleccion ponderada por latencia + circuit breaker
+  + SQL Validator — solo SELECT, sin DDL/DML
+  + NL Query Service — lenguaje natural -> SQL validado
+  + RAG Context Service — lee schemas de tenant para LLM
+  + Endpoints: /health, /tenants/{id}/ai/query, /tenants/{id}/chat, /router/stats
+  + SSE streaming para chat
+  + Dockerfile + docker-compose integration
+  + Providers: DeepSeek, OpenAI, Anthropic, Gemini, Qwen, Moonshot
+  + NUNCA usa modelos locales
+
+FILES CREATED:
+- nexus-ai/nexus_ai/main.py (app FastAPI, 90 lines)
+- nexus-ai/nexus_ai/core/llm_router.py (LLMRouter + CircuitBreaker, 200 lines)
+- nexus-ai/nexus_ai/core/sql_validator.py (SQL validation, 150 lines)
+- nexus-ai/nexus_ai/services/rag_context.py (RAG context extractor, 80 lines)
+- nexus-ai/nexus_ai/services/nl_query.py (NL to SQL, 150 lines)
+- nexus-ai/nexus_ai/api/routes.py (API endpoints, 200 lines)
+- nexus-ai/nexus_ai/models/schemas.py (Pydantic schemas, 60 lines)
+- nexus-ai/nexus_ai/requirements.txt (dependencies)
+- nexus-ai/nexus_ai/Dockerfile (container image)
+- docker-compose.yml updated (nexus-ai service added)
+
+───
+
+FASE 6 — Modulos Verticales V2 ✅ COMPLETADA (2026-05-26)
+  + ClinicsModule — Clinica Medica (5 tablas, 10 permisos)
+    * Tablas: patients, appointments, medical_records, diagnoses, prescriptions
+    * Cumplimiento: Res. 1995/1999 MINPROTECCION
+    * ICD-10 codes, vital signs, lab results
+  + VetModule — Clinica Veterinaria (5 tablas, 10 permisos)
+    * Tablas: pets, vet_consultations, vaccinations, deworming, pet_owners
+    * Vacunacion, desparasitacion, historial animal
+  + EducationModule — Institucion Educativa (5 tablas, 10 permisos)
+    * Tablas: students, enrollments, grades, grades_records, fee_schedules
+    * Pensiones, notas, promociones, matriculas
+  + GymModule — Gimnasio/Fitness (5 tablas, 10 permisos)
+    * Tablas: memberships, member_subscriptions, gym_classes, class_schedules, class_bookings
+    * Membresias, clases, reservas, entrenadores
+  + BeautyModule — Belleza/Spa (5 tablas, 10 permisos)
+    * Tablas: beauty_services, appointments, staff_specialties, commissions, beauty_products
+    * Turnos, comisiones staff, productos
+  + RealEstateModule — Inmobiliaria (5 tablas, 10 permisos)
+    * Tablas: properties, leases, rent_payments, maintenance_requests, property_visits
+    * Arriendos, pagos, mantenimiento
+  + ConstructionModule — Construccion (5 tablas, 10 permisos)
+    * Tablas: construction_projects, project_budget_items, materials_requests, equipment, project_milestones
+    * Presupuestos, materiales, equipos, hitos
+  + TransportModule — Transporte/Logistica (5 tablas, 10 permisos)
+    * Tablas: fleet_vehicles, drivers, routes, cargo_orders, vehicle_maintenance
+    * Flota, conductores, rutas, cargas, mantenimiento
+
+ModuleServiceProvider actualizado con 12 modulos verticales V1+V2.
+
+FILES CREATED:
+- nexus-ai/app/app/Modules/ClinicsModule.php
+- nexus-ai/app/app/Modules/VetModule.php
+- nexus-ai/app/app/Modules/EducationModule.php
+- nexus-ai/app/app/Modules/GymModule.php
+- nexus-ai/app/app/Modules/BeautyModule.php
+- nexus-ai/app/app/Modules/RealEstateModule.php
+- nexus-ai/app/app/Modules/ConstructionModule.php
+- nexus-ai/app/app/Modules/TransportModule.php
+- nexus-ai/app/app/Providers/ModuleServiceProvider.php (updated: 12 modules)
+
+───
+
+FASE 7 — Enterprise ✅ COMPLETADA (2026-05-26)
+  + HRModule — Recursos Humanos (5 tablas, 10 permisos)
+    * Tablas: org_chart, positions, performance_reviews, training_programs, training_enrollments
+    * Evaluaciones de desempeno, capacitaciones, organigrama
+  + ProjectsModule — Gestion de Proyectos (5 tablas, 8 permisos)
+    * Tablas: projects, tasks, task_assignments, project_resources, project_milestones
+    * Kanban, asignaciones, recursos, hitos
+  + BIModule — Business Intelligence (5 tablas, 10 permisos)
+    * Tablas: report_templates, scheduled_reports, kpi_definitions, kpi_values, dashboard_widgets
+    * Reportes programados, KPIs, dashboards
+  + MultiBranchModule — Multi-sede/Franquicias (5 tablas, 8 permisos)
+    * Tablas: branches, inter_branch_transfers, transfer_items, consolidated_reports, branch_settings
+    * Transferencias entre sedes, reportes consolidados
+
+ModuleServiceProvider actualizado con 12 modulos (V1 + V2 + Enterprise).
+
+FILES CREATED:
+- nexus-ai/app/app/Modules/HRModule.php
+- nexus-ai/app/app/Modules/ProjectsModule.php
+- nexus-ai/app/app/Modules/BIModule.php
+- nexus-ai/app/app/Modules/MultiBranchModule.php
+- nexus-ai/app/app/Providers/ModuleServiceProvider.php (updated: 12 modules total)
+
+───
+
+FASE 8 — Internacionalizacion LATAM ✅ COMPLETADA (2026-05-26)
+  + TaxService — Impuestos por pais
+    * 6 paises: CO, MX, AR, PE, CL, UY
+    * IVA/VAT rates configurables
+    * Tax ID validation por pais (NIT, RFC, CUIT, RUC, RUT)
+    * Calculo de impuesto incluido/excluido
+  + CurrencyService — Conversion de monedas
+    * 8 monedas: COP, MXN, ARS, PEN, CLP, UYU, BRL, USD
+    * Conversion via USD como puente
+    * Redis cache con TTL 1 hora
+    * Formateo de dinero por moneda
+  + InvoiceGenerator — Facturas electronicas multi-pais
+    * DIAN (Colombia) — UBL 2.1 + CUFE SHA-384 + XAdES-BES
+    * CFDI 4.0 (Mexico) — Timbre Fiscal Digital
+    * AFIP (Argentina) — XML firmado
+    * SUNAT (Peru) — XML
+    * SII (Chile) — DTE
+    * DGI (Uruguay) — XML
+    * Firma XAdES-BES para DIAN
+    * QR code data para DIAN
+
+FILES CREATED:
+- nexus-ai/app/app/Services/Localization/TaxService.php
+- nexus-ai/app/app/Services/Localization/CurrencyService.php
+- nexus-ai/app/app/Services/Localization/InvoiceGenerator.php
+
+───
+
+FASE 0 — Hardening ✅ COMPLETADA
+  + SSL pinning / httpOnly cookies
+  + LLM keys nunca en frontend
+  + random_int() criptografico
+  + HSTS enforcement
+  + SQL injection prevention verified
+
+FASE 1 — POS + DIAN ✅ COMPLETADA
+  + Proto3 schema para comunicacion terminal POS
+  + Generador CUFE SHA-384 (Anexo Tecnico DIAN)
+  + POS Manager con offline queue + sync
+  + API endpoints: transaction, inventory, offline, cufe/verify
+
+FASE 2 — ModuleContract ✅ COMPLETADA
+  + Interfaz ModuleContract (6 metodos)
+  + ModuleManager (ciclo de vida completo)
+  + InventoryModule (5 tablas DDL)
+  + Patrón DIP: core no sabe como funciona cada modulo
+
+FASE 3 — Nomina Colombia ✅ COMPLETADA
+  + PayrollModule (5 tablas DDL, 10 permisos)
+  + PayrollService (PILA/NE completa)
+  + 11 API endpoints REST
+  + Tasas Colombia configurables
+
+FASE 4 — AI Layer ✅ COMPLETADA
+  + StreamBuffer hook (typewriter effect)
+  + SSE Streaming (POST /api/chat/stream)
+  + AI Status Lottie (4 estados animados)
+  + LLM Router server-side siempre
+
+FASE 5 — Modulos Verticales ✅ COMPLETADA
+  + Taller Mecanico (5 tablas, 10 permisos)
+  + Farmacia INVIMA (5 tablas, 10 permisos)
+  + Restaurante Comandas (6 tablas, 12 permisos)
+  + Hotel Reservas (5 tablas, 12 permisos)
+  + Todos implementan ModuleContract
+  + Se activan por licencia por tenant

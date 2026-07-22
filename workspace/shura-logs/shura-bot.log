@@ -1,0 +1,281 @@
+[Telegram] Starting Telegram bot connected to OpenCode at: http://localhost:4096
+[Telegram] AUTHORIZED_TELEGRAM_USER_ID is not defined in the environment variables. The bot will be accessible to everyone.
+[Telegram] Connected to OpenCode server at http://localhost:4096
+[Telegram] Project directory: /home/jesus/cloky-elite-telegram-bot/workspace
+[Telegram] Found OpenCode command: init
+[Telegram] Found OpenCode command: review
+[Telegram] Found OpenCode command: business-growth-skills
+[Telegram] Found OpenCode command: skill-creator
+[Telegram] Found OpenCode command: c-level-advisor
+[Telegram] Found OpenCode command: gdpr-dsgvo-expert
+[Telegram] Found OpenCode command: quality-manager-qmr
+[Telegram] Found OpenCode command: copy-editing
+[Telegram] Found OpenCode command: churn-prevention
+[Telegram] Found OpenCode command: customer-success-manager
+[Telegram] Found OpenCode command: ad-creative
+[Telegram] Found OpenCode command: pricing-strategy
+[Telegram] Found OpenCode command: code-reviewer
+[Telegram] Found OpenCode command: revenue-operations
+[Telegram] Found OpenCode command: onboarding-cro
+[Telegram] Found OpenCode command: aws-solution-architect
+[Telegram] Found OpenCode command: rag-architect
+[Telegram] Found OpenCode command: email-sequence
+[Telegram] Found OpenCode command: interview-system-designer
+[Telegram] Found OpenCode command: isms-audit-expert
+[Telegram] Found OpenCode command: cpo-advisor
+[Telegram] Found OpenCode command: marketing-demand-acquisition
+[Telegram] Found OpenCode command: capa-officer
+[Telegram] Found OpenCode command: senior-architect
+[Telegram] Found OpenCode command: regulatory-affairs-head
+[Telegram] Found OpenCode command: video-content-strategist
+[Telegram] Found OpenCode command: content-humanizer
+[Telegram] Found OpenCode command: changelog-generator
+[Telegram] Found OpenCode command: risk-management-specialist
+[Telegram] Found OpenCode command: site-architecture
+[Telegram] Found OpenCode command: product-discovery
+[Telegram] Found OpenCode command: schema-markup
+[Telegram] Found OpenCode command: fda-consultant-specialist
+[Telegram] Found OpenCode command: statistical-analyst
+[Telegram] Found OpenCode command: ms365-tenant-manager
+[Telegram] Found OpenCode command: page-cro
+[Telegram] Found OpenCode command: coo-advisor
+[Telegram] Found OpenCode command: soc2-compliance
+[Telegram] Found OpenCode command: product-skills
+[Telegram] Found OpenCode command: google-workspace-cli
+[Telegram] Found OpenCode command: content-production
+[Telegram] Found OpenCode command: self-improving-agent
+[Telegram] Found OpenCode command: email-template-builder
+[Telegram] Found OpenCode command: qms-audit-expert
+[Telegram] Found OpenCode command: paid-ads
+[Telegram] Found OpenCode command: copywriting
+[Telegram] Found OpenCode command: social-media-analyzer
+[Telegram] Found OpenCode command: database-designer
+[Telegram] Found OpenCode command: tdd-guide
+[Telegram] Found OpenCode command: scenario-war-room
+[Telegram] Found OpenCode command: quality-documentation-manager
+[Telegram] Found OpenCode command: senior-security
+[Telegram] Found OpenCode command: marketing-skills
+[Telegram] Found OpenCode command: sql-database-assistant
+[Telegram] Found OpenCode command: snowflake-development
+[Telegram] Found OpenCode command: database-schema-designer
+[Telegram] Found OpenCode command: ra-qm-skills
+[Telegram] Found OpenCode command: popup-cro
+[Telegram] Found OpenCode command: sales-engineer
+[Telegram] Found OpenCode command: information-security-manager-iso27001
+[Telegram] Found OpenCode command: signup-flow-cro
+[Telegram] Found OpenCode command: finance-skills
+[Telegram] Found OpenCode command: api-test-suite-builder
+[Telegram] Found OpenCode command: referral-program
+[Telegram] Found OpenCode command: red-team
+[Telegram] Found OpenCode command: cmo-advisor
+[Telegram] Found OpenCode command: engineering-skills
+[Telegram] Found OpenCode command: senior-prompt-engineer
+[Telegram] Found OpenCode command: contract-and-proposal-writer
+[Telegram] Found OpenCode command: epic-design
+[Telegram] Found OpenCode command: pm-skills
+[Telegram] Found OpenCode command: experiment-designer
+[Telegram] Found OpenCode command: senior-devops
+[Telegram] Found OpenCode command: senior-frontend
+[Telegram] Found OpenCode command: llm-cost-optimizer
+[Telegram] Found OpenCode command: senior-data-engineer
+[Telegram] Found OpenCode command: status
+[Telegram] Found OpenCode command: financial-analyst
+[Telegram] Found OpenCode command: apple-scroll-web
+[Telegram] Found OpenCode command: mdr-745-specialist
+[Telegram] Found OpenCode command: programmatic-seo
+[Telegram] Found OpenCode command: launch-strategy
+[Telegram] Found OpenCode command: stripe-integration-expert
+[Telegram] Found OpenCode command: release-manager
+[Telegram] Found OpenCode command: quality-manager-qms-iso13485
+[Telegram] Found OpenCode command: engineering-advanced-skills
+[Telegram] Found OpenCode command: campaign-analytics
+[Telegram] Found OpenCode command: monorepo-navigator
+[Telegram] Found OpenCode command: landing-page-generator
+[Telegram] Found OpenCode command: git-worktree-manager
+[Telegram] Found OpenCode command: hermes-compression
+[Telegram] Found OpenCode command: browserstack
+[Telegram] Found OpenCode command: performance-profiler
+[Telegram] Found OpenCode command: a11y-audit
+[Telegram] Found OpenCode command: content-strategy
+[Telegram] Found OpenCode command: competitive-intel
+[Telegram] Found OpenCode command: adversarial-reviewer
+[Telegram] Found OpenCode command: social-content
+[Telegram] Found OpenCode command: product-analytics
+[Telegram] Found OpenCode command: incident-commander
+[Telegram] Found OpenCode command: senior-ml-engineer
+[Telegram] Found OpenCode command: prompt-engineer-toolkit
+[Telegram] Found OpenCode command: confluence-expert
+[Telegram] Found OpenCode command: change-management
+[Telegram] Found OpenCode command: org-health-diagnostic
+[Telegram] Found OpenCode command: free-tool-strategy
+[Telegram] Found OpenCode command: playwright-pro
+[Telegram] Found OpenCode command: pr-review-expert
+[Telegram] Found OpenCode command: cro-advisor
+[Telegram] Found OpenCode command: app-store-optimization
+[Telegram] Found OpenCode command: marketing-psychology
+[Telegram] Found OpenCode command: ciso-advisor
+[Telegram] Found OpenCode command: llm-wiki
+[Telegram] Found OpenCode command: spawn
+[Telegram] Found OpenCode command: form-cro
+[Telegram] Found OpenCode command: company-os
+[Telegram] Found OpenCode command: ai-seo
+[Telegram] Found OpenCode command: marketing-context
+[Telegram] Found OpenCode command: ci-cd-pipeline-builder
+[Telegram] Found OpenCode command: secrets-vault-manager
+[Telegram] Found OpenCode command: ui-design-system
+[Telegram] Found OpenCode command: intl-expansion
+[Telegram] Found OpenCode command: testrail
+[Telegram] Found OpenCode command: api-design-reviewer
+[Telegram] Found OpenCode command: senior-computer-vision
+[Telegram] Found OpenCode command: meeting-analyzer
+[Telegram] Found OpenCode command: promote
+[Telegram] Found OpenCode command: saas-metrics-coach
+[Telegram] Found OpenCode command: senior-secops
+[Telegram] Found OpenCode command: agent-designer
+[Telegram] Found OpenCode command: karpathy-coder
+[Telegram] Found OpenCode command: apple-hig-expert
+[Telegram] Found OpenCode command: executive-mentor
+[Telegram] Found OpenCode command: helm-chart-builder
+[Telegram] Found OpenCode command: senior-fullstack
+[Telegram] Found OpenCode command: roadmap-communicator
+[Telegram] Found OpenCode command: dependency-auditor
+[Telegram] Found OpenCode command: remember
+[Telegram] Found OpenCode command: marketing-ideas
+[Telegram] Found OpenCode command: prompt-governance
+[Telegram] Found OpenCode command: business-investment-advisor
+[Telegram] Found OpenCode command: competitor-alternatives
+[Telegram] Found OpenCode command: senior-qa
+[Telegram] Found OpenCode command: agent-workflow-designer
+[Telegram] Found OpenCode command: generate
+[Telegram] Found OpenCode command: brand-guidelines
+[Telegram] Found OpenCode command: atlassian-admin
+[Telegram] Found OpenCode command: internal-narrative
+[Telegram] Found OpenCode command: autoresearch-agent
+[Telegram] Found OpenCode command: paywall-upgrade-cro
+[Telegram] Found OpenCode command: atlassian-templates
+[Telegram] Found OpenCode command: content-creator
+[Telegram] Found OpenCode command: spec-driven-workflow
+[Telegram] Found OpenCode command: eval
+[Telegram] Found OpenCode command: skill-tester
+[Telegram] Found OpenCode command: ux-researcher-designer
+[Telegram] Found OpenCode command: marketing-ops
+[Telegram] Found OpenCode command: chief-of-staff
+[Telegram] Found OpenCode command: cfo-advisor
+[Telegram] Found OpenCode command: ai-security
+[Telegram] Found OpenCode command: code-tour
+[Telegram] Found OpenCode command: setup
+[Telegram] Found OpenCode command: gcp-cloud-architect
+[Telegram] Found OpenCode command: behuman
+[Telegram] Found OpenCode command: fix
+[Telegram] Found OpenCode command: skill-security-auditor
+[Telegram] Found OpenCode command: social-media-manager
+[Telegram] Found OpenCode command: tech-stack-evaluator
+[Telegram] Found OpenCode command: seo-audit
+[Telegram] Found OpenCode command: ab-test-setup
+[Telegram] Found OpenCode command: azure-cloud-architect
+[Telegram] Found OpenCode command: loop
+[Telegram] Found OpenCode command: codebase-onboarding
+[Telegram] Found OpenCode command: senior-pm
+[Telegram] Found OpenCode command: threat-detection
+[Telegram] Found OpenCode command: marketing-strategy-pmm
+[Telegram] Found OpenCode command: runbook-generator
+[Telegram] Found OpenCode command: merge
+[Telegram] Found OpenCode command: competitive-teardown
+[Telegram] Found OpenCode command: senior-backend
+[Telegram] Found OpenCode command: browser-automation
+[Telegram] Found OpenCode command: jira-expert
+[Telegram] Found OpenCode command: agent-protocol
+[Telegram] Found OpenCode command: decision-logger
+[Telegram] Found OpenCode command: cloud-security
+[Telegram] Found OpenCode command: ceo-advisor
+[Telegram] Found OpenCode command: context-engine
+[Telegram] Found OpenCode command: terraform-patterns
+[Telegram] Found OpenCode command: senior-data-scientist
+[Telegram] Found OpenCode command: ma-playbook
+[Telegram] Found OpenCode command: agile-product-owner
+[Telegram] Found OpenCode command: migrate
+[Telegram] Found OpenCode command: extract
+[Telegram] Found OpenCode command: run
+[Telegram] Found OpenCode command: migration-architect
+[Telegram] Found OpenCode command: x-twitter-growth
+[Telegram] Found OpenCode command: analytics-tracking
+[Telegram] Found OpenCode command: cold-email
+[Telegram] Found OpenCode command: product-strategist
+[Telegram] Found OpenCode command: cto-advisor
+[Telegram] Found OpenCode command: tech-debt-tracker
+[Telegram] Found OpenCode command: self-eval
+[Telegram] Found OpenCode command: agenthub
+[Telegram] Found OpenCode command: culture-architect
+[Telegram] Found OpenCode command: resume
+[Telegram] Found OpenCode command: board-meeting
+[Telegram] Found OpenCode command: docker-development
+[Telegram] Found OpenCode command: spec-to-repo
+[Telegram] Found OpenCode command: cs-onboard
+[Telegram] Found OpenCode command: incident-response
+[Telegram] Found OpenCode command: team-communications
+[Telegram] Found OpenCode command: tc-tracker
+[Telegram] Found OpenCode command: mcp-server-builder
+[Telegram] Found OpenCode command: focused-fix
+[Telegram] Found OpenCode command: product-manager-toolkit
+[Telegram] Found OpenCode command: code-to-prd
+[Telegram] Found OpenCode command: env-secrets-manager
+[Telegram] Found OpenCode command: data-quality-auditor
+[Telegram] Found OpenCode command: security-pen-testing
+[Telegram] Found OpenCode command: coverage
+[Telegram] Found OpenCode command: saas-scaffolder
+[Telegram] Found OpenCode command: hard-call
+[Telegram] Found OpenCode command: scrum-master
+[Telegram] Found OpenCode command: report
+[Telegram] Found OpenCode command: research-summarizer
+[Telegram] Found OpenCode command: challenge
+[Telegram] Found OpenCode command: stress-test
+[Telegram] Found OpenCode command: board
+[Telegram] Found OpenCode command: founder-coach
+[Telegram] Found OpenCode command: strategic-alignment
+[Telegram] Found OpenCode command: board-deck-builder
+[Telegram] Found OpenCode command: postmortem
+[Telegram] Found OpenCode command: board-prep
+[Telegram] Found OpenCode command: observability-designer
+[Telegram] Found OpenCode command: chro-advisor
+[Telegram] Found OpenCode command: demo-video
+[Telegram] Available OpenCode commands: init, review, business-growth-skills, skill-creator, c-level-advisor, gdpr-dsgvo-expert, quality-manager-qmr, copy-editing, churn-prevention, customer-success-manager, ad-creative, pricing-strategy, code-reviewer, revenue-operations, onboarding-cro, aws-solution-architect, rag-architect, email-sequence, interview-system-designer, isms-audit-expert, cpo-advisor, marketing-demand-acquisition, capa-officer, senior-architect, regulatory-affairs-head, video-content-strategist, content-humanizer, changelog-generator, risk-management-specialist, site-architecture, product-discovery, schema-markup, fda-consultant-specialist, statistical-analyst, ms365-tenant-manager, page-cro, coo-advisor, soc2-compliance, product-skills, google-workspace-cli, content-production, self-improving-agent, email-template-builder, qms-audit-expert, paid-ads, copywriting, social-media-analyzer, database-designer, tdd-guide, scenario-war-room, quality-documentation-manager, senior-security, marketing-skills, sql-database-assistant, snowflake-development, database-schema-designer, ra-qm-skills, popup-cro, sales-engineer, information-security-manager-iso27001, signup-flow-cro, finance-skills, api-test-suite-builder, referral-program, red-team, cmo-advisor, engineering-skills, senior-prompt-engineer, contract-and-proposal-writer, epic-design, pm-skills, experiment-designer, senior-devops, senior-frontend, llm-cost-optimizer, senior-data-engineer, status, financial-analyst, apple-scroll-web, mdr-745-specialist, programmatic-seo, launch-strategy, stripe-integration-expert, release-manager, quality-manager-qms-iso13485, engineering-advanced-skills, campaign-analytics, monorepo-navigator, landing-page-generator, git-worktree-manager, hermes-compression, browserstack, performance-profiler, a11y-audit, content-strategy, competitive-intel, adversarial-reviewer, social-content, product-analytics, incident-commander, senior-ml-engineer, prompt-engineer-toolkit, confluence-expert, change-management, org-health-diagnostic, free-tool-strategy, playwright-pro, pr-review-expert, cro-advisor, app-store-optimization, marketing-psychology, ciso-advisor, llm-wiki, spawn, form-cro, company-os, ai-seo, marketing-context, ci-cd-pipeline-builder, secrets-vault-manager, ui-design-system, intl-expansion, testrail, api-design-reviewer, senior-computer-vision, meeting-analyzer, promote, saas-metrics-coach, senior-secops, agent-designer, karpathy-coder, apple-hig-expert, executive-mentor, helm-chart-builder, senior-fullstack, roadmap-communicator, dependency-auditor, remember, marketing-ideas, prompt-governance, business-investment-advisor, competitor-alternatives, senior-qa, agent-workflow-designer, generate, brand-guidelines, atlassian-admin, internal-narrative, autoresearch-agent, paywall-upgrade-cro, atlassian-templates, content-creator, spec-driven-workflow, eval, skill-tester, ux-researcher-designer, marketing-ops, chief-of-staff, cfo-advisor, ai-security, code-tour, setup, gcp-cloud-architect, behuman, fix, skill-security-auditor, social-media-manager, tech-stack-evaluator, seo-audit, ab-test-setup, azure-cloud-architect, loop, codebase-onboarding, senior-pm, threat-detection, marketing-strategy-pmm, runbook-generator, merge, competitive-teardown, senior-backend, browser-automation, jira-expert, agent-protocol, decision-logger, cloud-security, ceo-advisor, context-engine, terraform-patterns, senior-data-scientist, ma-playbook, agile-product-owner, migrate, extract, run, migration-architect, x-twitter-growth, analytics-tracking, cold-email, product-strategist, cto-advisor, tech-debt-tracker, self-eval, agenthub, culture-architect, resume, board-meeting, docker-development, spec-to-repo, cs-onboard, incident-response, team-communications, tc-tracker, mcp-server-builder, focused-fix, product-manager-toolkit, code-to-prd, env-secrets-manager, data-quality-auditor, security-pen-testing, coverage, saas-scaffolder, hard-call, scrum-master, report, research-summarizer, challenge, stress-test, board, founder-coach, strategic-alignment, board-deck-builder, postmortem, board-prep, observability-designer, chro-advisor, demo-video
+[Telegram] Available agents: build (primary), plan (primary), general (subagent), explore (subagent)
+[Telegram] Loaded 1 active session(s) and 1 known session(s) from /home/jesus/.local/lib/node_modules/opencode-telegram-bot/sessions.json
+[Telegram] Restored session ses_1d1cc8578ffeiiHgacxygV0tzC for chat 8166253211
+[Telegram] Bot is running (long-polling started)
+Unable to start the Telegram bot: TelegramError: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13737:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async [Symbol.asyncIterator] (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13875:33)
+    at async Polling.loop (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13918:30)
+    at async Telegraf.launch (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:15228:13)
+    at async startTelegram (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:22111:13)
+    at async src_main (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:22172:5) {
+  response: {
+    ok: false,
+    error_code: 409,
+    description: 'Conflict: terminated by other getUpdates request; make sure that only one bot instance is running'
+  },
+  on: {
+    method: 'getUpdates',
+    payload: { timeout: 50, offset: 0, allowed_updates: [] }
+  }
+}
+Error starting Telegram bot: TelegramError: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13737:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async [Symbol.asyncIterator] (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13875:33)
+    at async Polling.loop (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:13918:30)
+    at async Telegraf.launch (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:15228:13)
+    at async startTelegram (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:22111:13)
+    at async src_main (file:///home/jesus/.local/lib/node_modules/opencode-telegram-bot/dist/index.js:22172:5) {
+  response: {
+    ok: false,
+    error_code: 409,
+    description: 'Conflict: terminated by other getUpdates request; make sure that only one bot instance is running'
+  },
+  on: {
+    method: 'getUpdates',
+    payload: { timeout: 50, offset: 0, allowed_updates: [] }
+  }
+}

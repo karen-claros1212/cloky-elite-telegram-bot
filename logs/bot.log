@@ -1,0 +1,486 @@
+2026-07-19T13:53:24-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=349545
+2026-07-19T13:53:24-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:53:24-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T13:53:24-0500 SANDBOX_MODE unknown
+2026-07-19T13:53:24-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T13:53:24-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T13:53:24-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T13:53:24-0500 PREFLIGHT_OK claude=/home/jesus/.local/bin/claude
+2026-07-19T13:53:24-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T13:53:24-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T13:53:24-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:53:24-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T13:53:24-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T13:53:25-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T13:53:25-0500 READY polling Telegram
+2026-07-19T13:53:39-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:39-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:47-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:47-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:56-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:56-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:04-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:04-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:13-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T13:54:21-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:21-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:23-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T13:54:23-0500 STOPPED
+esible: /home/jesus/.claude/projects
+2026-07-19T13:53:38-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T13:53:38-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T13:53:38-0500 READY polling Telegram
+2026-07-19T13:53:39-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:39-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:45-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:45-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:47-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:47-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:53-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:53-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:56-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:53:56-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:01-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:01-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:04-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:04-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:06-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T13:54:07-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:07-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:09-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T13:54:09-0500 STOPPED
+2026-07-19T13:54:13-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T13:54:19-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=351134
+2026-07-19T13:54:19-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:54:19-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T13:54:19-0500 SANDBOX_MODE open
+2026-07-19T13:54:19-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T13:54:19-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T13:54:19-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T13:54:19-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T13:54:19-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T13:54:19-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T13:54:19-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T13:54:19-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:54:19-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T13:54:19-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T13:54:20-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T13:54:20-0500 READY polling Telegram
+2026-07-19T13:54:21-0500 TELEGRAM_API_HTTP_ERROR method=getUpdates code=409 body={"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:21-0500 GET_UPDATES_NOT_OK {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-07-19T13:54:21-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T13:54:23-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T13:54:23-0500 STOPPED
+2026-07-19T13:55:05-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=352349
+2026-07-19T13:55:05-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:55:05-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T13:55:05-0500 SANDBOX_MODE open
+2026-07-19T13:55:05-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T13:55:05-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T13:55:05-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T13:55:05-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T13:55:05-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T13:55:05-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T13:55:06-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T13:55:06-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T13:55:06-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T13:55:06-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T13:55:06-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T13:55:06-0500 READY polling Telegram
+2026-07-19T19:08:19-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T19:45:46-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4429
+2026-07-19T19:45:46-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T19:45:46-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T19:45:46-0500 SANDBOX_MODE open
+2026-07-19T19:45:46-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T19:45:46-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T19:45:46-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T19:45:46-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T19:45:46-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T19:45:46-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T19:45:46-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-19T19:45:46-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T19:45:46-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T19:45:46-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T19:45:47-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T19:45:47-0500 READY polling Telegram
+2026-07-19T20:27:09-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T20:27:13-0500 END_TASK user=8166253211 return_code=1 content_len=405 elapsed=2.4s
+2026-07-19T20:38:51-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T20:39:18-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T20:39:18-0500 STOPPED
+2026-07-19T20:39:23-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=85651
+2026-07-19T20:39:23-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T20:39:23-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T20:39:23-0500 SANDBOX_MODE open
+2026-07-19T20:39:23-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T20:39:23-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T20:39:23-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T20:39:23-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T20:39:23-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T20:39:24-0500 PREFLIGHT_OK claude_version=2.1.174 (raw: 2.1.174 (Claude Code))
+2026-07-19T20:39:24-0500 PREFLIGHT_INFO claude 2.1.174 <2.1.211: sin --forward-subagent-text ni background sessions/fork nuevos. El bot funciona igual; para el estado del arte: claude update
+2026-07-19T20:39:24-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T20:39:24-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T20:39:24-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T20:39:24-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T20:39:24-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T20:39:24-0500 READY polling Telegram
+2026-07-19T20:55:43-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T20:56:07-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T20:56:07-0500 STOPPED
+2026-07-19T20:56:12-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=108354
+2026-07-19T20:56:12-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T20:56:12-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T20:56:12-0500 SANDBOX_MODE open
+2026-07-19T20:56:12-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T20:56:12-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T20:56:12-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T20:56:12-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T20:56:12-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T20:56:12-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T20:56:12-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T20:56:12-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T20:56:12-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T20:56:12-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T20:56:12-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T20:56:12-0500 READY polling Telegram
+2026-07-19T21:00:06-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T21:00:15-0500 TELEGRAM_API_HTTP_ERROR method=editMessageText code=400 body={"ok":false,"error_code":400,"description":"Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message"}
+2026-07-19T21:00:16-0500 END_TASK user=8166253211 return_code=0 content_len=157 elapsed=8.8s
+2026-07-19T21:00:16-0500 USAGE user=8166253211 input=102480 output=167
+2026-07-19T21:00:59-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T21:01:02-0500 TELEGRAM_API_HTTP_ERROR method=editMessageText code=400 body={"ok":false,"error_code":400,"description":"Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message"}
+2026-07-19T21:01:03-0500 END_TASK user=8166253211 return_code=0 content_len=293 elapsed=3.0s
+2026-07-19T21:01:03-0500 USAGE user=8166253211 input=201 output=125
+2026-07-19T21:01:58-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T21:02:02-0500 TELEGRAM_API_HTTP_ERROR method=editMessageText code=400 body={"ok":false,"error_code":400,"description":"Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message"}
+2026-07-19T21:02:08-0500 END_TASK user=8166253211 return_code=0 content_len=150 elapsed=3.0s
+2026-07-19T21:02:08-0500 USAGE user=8166253211 input=504 output=154
+2026-07-19T21:02:47-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T21:03:39-0500 END_TASK user=8166253211 return_code=0 content_len=353 elapsed=50.5s
+2026-07-19T21:03:39-0500 USAGE user=8166253211 input=2673 output=1046
+2026-07-19T21:04:23-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-19T21:04:52-0500 CALLBACK user=8166253211 data='plan:approve'
+2026-07-19T21:04:52-0500 USER_MODE_SET user=8166253211 mode=bypassPermissions
+2026-07-19T21:05:09-0500 END_TASK user=8166253211 return_code=0 content_len=12021 elapsed=42.9s
+2026-07-19T21:05:09-0500 USAGE user=8166253211 input=9023 output=875
+2026-07-19T21:19:03-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T21:19:20-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T21:19:20-0500 STOPPED
+2026-07-19T21:19:25-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=140100
+2026-07-19T21:19:25-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:19:25-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T21:19:25-0500 SANDBOX_MODE open
+2026-07-19T21:19:25-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T21:19:25-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T21:19:25-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T21:19:25-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T21:19:25-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T21:19:25-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T21:19:25-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T21:19:25-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:19:25-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T21:19:25-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T21:19:26-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T21:19:26-0500 READY polling Telegram
+2026-07-19T21:23:53-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-19T21:23:56-0500 END_TASK user=8166253211 return_code=1 content_len=405 elapsed=2.1s
+2026-07-19T21:25:48-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T21:26:10-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T21:26:10-0500 STOPPED
+2026-07-19T21:26:15-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=149484
+2026-07-19T21:26:15-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:26:15-0500 BACKEND http://127.0.0.1:8081 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T21:26:15-0500 SANDBOX_MODE open
+2026-07-19T21:26:15-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T21:26:15-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T21:26:15-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T21:26:15-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T21:26:15-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T21:26:15-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T21:26:15-0500 PREFLIGHT_OK backend http://127.0.0.1:8081 HTTP 200
+2026-07-19T21:26:15-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:26:15-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T21:26:15-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T21:26:15-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T21:26:15-0500 READY polling Telegram
+2026-07-19T21:48:37-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-19T21:48:40-0500 END_TASK user=8166253211 return_code=1 content_len=405 elapsed=2.5s
+2026-07-19T21:50:51-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T21:50:53-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T21:50:53-0500 STOPPED
+2026-07-19T21:50:58-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=182557
+2026-07-19T21:50:58-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:50:58-0500 BACKEND http://127.0.0.1:8081 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T21:50:58-0500 SANDBOX_MODE open
+2026-07-19T21:50:58-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T21:50:58-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T21:50:58-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T21:50:58-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T21:50:58-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T21:50:59-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T21:50:59-0500 PREFLIGHT_OK backend http://127.0.0.1:8081 HTTP 200
+2026-07-19T21:50:59-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:50:59-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T21:50:59-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T21:50:59-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T21:50:59-0500 READY polling Telegram
+2026-07-19T21:51:48-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-19T21:51:51-0500 END_TASK user=8166253211 return_code=1 content_len=405 elapsed=1.9s
+2026-07-19T21:53:39-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T21:54:04-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-19T21:54:04-0500 STOPPED
+2026-07-19T21:54:09-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=186998
+2026-07-19T21:54:09-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:54:09-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T21:54:09-0500 SANDBOX_MODE open
+2026-07-19T21:54:09-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T21:54:09-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T21:54:09-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T21:54:09-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T21:54:09-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T21:54:10-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T21:54:10-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-19T21:54:10-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T21:54:10-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T21:54:10-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T21:54:10-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T21:54:10-0500 READY polling Telegram
+2026-07-19T21:54:28-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-19T21:54:41-0500 END_TASK user=8166253211 return_code=0 content_len=126 elapsed=13.0s
+2026-07-19T21:54:41-0500 USAGE user=8166253211 input=74998 output=2
+2026-07-19T21:55:10-0500 CALLBACK user=8166253211 data='mode:bypass'
+2026-07-19T21:56:03-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-19T22:17:18-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4266
+2026-07-19T22:17:18-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T22:17:18-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T22:17:18-0500 SANDBOX_MODE open
+2026-07-19T22:17:18-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T22:17:18-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T22:17:18-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T22:17:18-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T22:17:18-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T22:17:18-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T22:17:18-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-19T22:17:18-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T22:17:18-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T22:17:18-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T22:17:19-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T22:17:19-0500 READY polling Telegram
+2026-07-19T23:10:19-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=2168
+2026-07-19T23:10:19-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T23:10:19-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-19T23:10:19-0500 SANDBOX_MODE open
+2026-07-19T23:10:19-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-19T23:10:19-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-19T23:10:19-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-19T23:10:19-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-19T23:10:19-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-19T23:10:19-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-19T23:10:19-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-19T23:10:19-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-19T23:10:19-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-19T23:10:19-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-19T23:10:19-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-19T23:10:19-0500 READY polling Telegram
+2026-07-20T09:29:00-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-20T09:29:48-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4954
+2026-07-20T09:29:48-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T09:29:48-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-20T09:29:48-0500 SANDBOX_MODE open
+2026-07-20T09:29:48-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-20T09:29:48-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-20T09:29:48-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-20T09:29:48-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-20T09:29:48-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-20T09:29:48-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-20T09:29:48-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-20T09:29:48-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T09:29:48-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-20T09:29:48-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-20T09:29:49-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-20T09:29:49-0500 READY polling Telegram
+2026-07-20T11:33:23-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-20T12:21:26-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4020
+2026-07-20T12:21:26-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T12:21:26-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-20T12:21:26-0500 SANDBOX_MODE open
+2026-07-20T12:21:26-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-20T12:21:26-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-20T12:21:26-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-20T12:21:26-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-20T12:21:26-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-20T12:21:26-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-20T12:21:26-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-20T12:21:26-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T12:21:26-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-20T12:21:26-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-20T12:21:26-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-20T12:21:26-0500 READY polling Telegram
+2026-07-20T12:43:42-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-20T15:23:39-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4620
+2026-07-20T15:23:39-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T15:23:39-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-20T15:23:39-0500 SANDBOX_MODE open
+2026-07-20T15:23:39-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-20T15:23:39-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-20T15:23:39-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-20T15:23:39-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-20T15:23:39-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-20T15:23:39-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-20T15:23:39-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-20T15:23:39-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T15:23:39-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-20T15:23:39-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-20T15:23:39-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-20T15:23:39-0500 READY polling Telegram
+2026-07-20T17:35:53-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-20T18:55:57-0500 START cloky-elite-telegram-bot v1.12.0 (2026-07-19) pid=4561
+2026-07-20T18:55:57-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T18:55:57-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-20T18:55:57-0500 SANDBOX_MODE open
+2026-07-20T18:55:57-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-20T18:55:57-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-20T18:55:57-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-20T18:55:57-0500 V1.9 inline_kb=True usage_tracking=True approval_buttons=False (EXPERIMENTAL)
+2026-07-20T18:55:57-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-20T18:55:57-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-20T18:55:57-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-20T18:55:57-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T18:55:57-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-20T18:55:57-0500 APPROVAL_BUTTONS_DISABLED (set APPROVAL_BUTTONS_ENABLED=true to enable EXPERIMENTAL)
+2026-07-20T18:55:58-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-20T18:55:58-0500 READY polling Telegram
+2026-07-20T19:57:23-0500 CALLBACK user=8166253211 data='mode:bypass'
+2026-07-20T19:57:54-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-20T19:58:19-0500 END_TASK user=8166253211 return_code=0 content_len=126 elapsed=24.3s
+2026-07-20T19:58:19-0500 USAGE user=8166253211 input=74998 output=2
+2026-07-20T21:04:09-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-20T21:05:03-0500 START cloky-elite-telegram-bot v2.0.0 (2026-07-20) pid=181798
+2026-07-20T21:05:03-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T21:05:03-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-20T21:05:03-0500 SANDBOX_MODE open
+2026-07-20T21:05:03-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-20T21:05:03-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-20T21:05:03-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-20T21:05:03-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-20T21:05:03-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-20T21:05:03-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-20T21:05:03-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-20T21:05:03-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-20T21:05:04-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-20T21:05:04-0500 READY polling Telegram
+2026-07-20T21:06:50-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-20T21:07:04-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=13.3s
+2026-07-20T21:25:41-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-21T11:55:39-0500 START cloky-elite-telegram-bot v2.0.0 (2026-07-20) pid=2271
+2026-07-21T11:55:39-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T11:55:39-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-21T11:55:39-0500 SANDBOX_MODE open
+2026-07-21T11:55:39-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-21T11:55:39-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-21T11:55:39-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-21T11:55:39-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-21T11:55:39-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-21T11:55:39-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-21T11:55:39-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T11:55:39-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-21T11:55:39-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-21T11:55:39-0500 READY polling Telegram
+2026-07-21T13:02:37-0500 TELEGRAM_API_RETRY method=getUpdates attempt=1/3 error=TimeoutError: The read operation timed out
+2026-07-21T13:02:58-0500 TELEGRAM_API_RETRY method=getUpdates attempt=2/3 error=URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+2026-07-21T13:33:42-0500 TELEGRAM_API_RETRY method=getUpdates attempt=1/3 error=TimeoutError: The read operation timed out
+2026-07-21T14:47:01-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-21T14:47:20-0500 SHUTTING_DOWN matando tareas activas...
+2026-07-21T14:47:20-0500 STOPPED
+2026-07-21T14:47:28-0500 START cloky-elite-telegram-bot v2.0.0 (2026-07-20) pid=238386
+2026-07-21T14:47:28-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T14:47:28-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-21T14:47:28-0500 SANDBOX_MODE open
+2026-07-21T14:47:28-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-21T14:47:28-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-21T14:47:28-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-21T14:47:28-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-21T14:47:28-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-21T14:47:28-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-21T14:47:28-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T14:47:28-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-21T14:47:29-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-21T14:47:29-0500 READY polling Telegram
+2026-07-21T15:18:27-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-21T15:18:50-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=22.1s
+2026-07-21T15:41:10-0500 CALLBACK user=8166253211 data='op:sessions'
+2026-07-21T15:41:52-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-21T15:42:07-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=14.0s
+2026-07-21T15:42:39-0500 CALLBACK user=8166253211 data='op:status'
+2026-07-21T16:00:21-0500 TELEGRAM_API_RETRY method=getUpdates attempt=1/3 error=URLError: <urlopen error [Errno 101] Network is unreachable>
+2026-07-21T16:17:20-0500 TELEGRAM_API_RETRY method=getUpdates attempt=1/3 error=URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+2026-07-21T16:55:04-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-21T16:55:36-0500 START cloky-elite-telegram-bot v2.2.0 (2026-07-21) pid=408951
+2026-07-21T16:55:36-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T16:55:36-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-21T16:55:36-0500 SANDBOX_MODE open
+2026-07-21T16:55:36-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-21T16:55:36-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-21T16:55:36-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-21T16:55:36-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-21T16:55:36-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-21T16:55:36-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-21T16:55:36-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T16:55:36-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-21T16:55:37-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-21T16:55:39-0500 BOT_COMMANDS_REGISTERED n=11
+2026-07-21T16:55:39-0500 READY polling Telegram
+2026-07-21T16:57:55-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-21T16:57:56-0500 END_TASK user=8166253211 return_code=1 content_len=229 elapsed=0.4s
+2026-07-21T17:01:53-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-21T17:02:36-0500 START cloky-elite-telegram-bot v2.2.1 (2026-07-21) pid=418502
+2026-07-21T17:02:36-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T17:02:36-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-21T17:02:36-0500 SANDBOX_MODE open
+2026-07-21T17:02:36-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-21T17:02:36-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-21T17:02:36-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-21T17:02:36-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-21T17:02:37-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-21T17:02:37-0500 PREFLIGHT_OK backend http://127.0.0.1:8080 HTTP 200
+2026-07-21T17:02:37-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T17:02:37-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-21T17:02:38-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-21T17:02:39-0500 BOT_COMMANDS_REGISTERED n=11
+2026-07-21T17:02:39-0500 READY polling Telegram
+2026-07-21T17:15:09-0500 TELEGRAM_API_RETRY method=getUpdates attempt=1/3 error=TimeoutError: The read operation timed out
+2026-07-21T17:36:25-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=bypassPermissions max_turns=50 RESUME
+2026-07-21T17:36:40-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=13.7s
+2026-07-21T17:36:54-0500 CALLBACK user=8166253211 data='op:mode'
+2026-07-21T17:37:03-0500 CALLBACK user=8166253211 data='mode:plan'
+2026-07-21T17:37:03-0500 USER_MODE_SET user=8166253211 mode=plan
+2026-07-21T17:37:27-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T17:37:40-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=12.3s
+2026-07-21T18:06:28-0500 SHUTDOWN_SIGNAL signum=15
+2026-07-21T18:27:18-0500 START cloky-elite-telegram-bot v2.2.1 (2026-07-21) pid=4507
+2026-07-21T18:27:18-0500 WORKSPACE /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T18:27:18-0500 BACKEND http://127.0.0.1:8080 model=Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf
+2026-07-21T18:27:18-0500 SANDBOX_MODE open
+2026-07-21T18:27:18-0500 WARNING modo OPEN — el bot tiene acceso a TODO $HOME
+2026-07-21T18:27:18-0500 CONFIG max_output_tokens=32000 tool_concurrency=8 timeout=1800s bash_default=600000ms bash_max=1800000ms thinking_tokens=31999
+2026-07-21T18:27:18-0500 V1.7 permission_mode=bypassPermissions max_turns=50 native_sessions=/home/jesus/cloky-elite-telegram-bot/state/native_sessions.json
+2026-07-21T18:27:18-0500 PREFLIGHT_OK claude=/usr/bin/claude
+2026-07-21T18:27:18-0500 PREFLIGHT_OK claude_version=2.1.215 (raw: 2.1.215 (Claude Code))
+2026-07-21T18:27:18-0500 PREFLIGHT_WARN backend http://127.0.0.1:8080 no responde: HTTPError: HTTP Error 503: Service Unavailable
+2026-07-21T18:27:18-0500 PREFLIGHT_OK workspace escribible: /home/jesus/cloky-elite-telegram-bot/workspace
+2026-07-21T18:27:18-0500 PREFLIGHT_OK ~/.claude/projects accesible: /home/jesus/.claude/projects
+2026-07-21T18:27:18-0500 TELEGRAM_GETME {'ok': True, 'result': {'id': 8345630873, 'is_bot': True, 'first_name': 'Shaka de Virgo', 'username': 'Cloky77bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'supports_guest_queries': False, 'can_connect_to_business': False, 'has_main_web_app': False, 'has_topics_enabled': False, 'allows_users_to_create_topics': False, 'can_manage_bots': False, 'supports_join_request_queries': False}}
+2026-07-21T18:27:19-0500 BOT_COMMANDS_REGISTERED n=11
+2026-07-21T18:27:19-0500 READY polling Telegram
+2026-07-21T19:39:13-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T19:39:38-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=24.9s
+2026-07-21T19:40:17-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T19:40:44-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=26.2s
+2026-07-21T19:40:47-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T19:41:13-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=25.4s
+2026-07-21T19:42:57-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T19:43:25-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=27.5s
+2026-07-21T19:43:48-0500 START_TASK user=8166253211 cwd=/home/jesus/cloky-elite-telegram-bot/workspace session_id=a55f2d0c... mode=plan max_turns=50 RESUME
+2026-07-21T19:44:17-0500 END_TASK user=8166253211 return_code=0 content_len=41 elapsed=27.9s

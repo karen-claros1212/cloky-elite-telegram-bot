@@ -1,0 +1,47 @@
+{
+  "8166253211": {
+    "daily": {
+      "2026-06-04": {
+        "input_tokens": 383639,
+        "output_tokens": 50,
+        "tasks": 8
+      },
+      "2026-06-06": {
+        "input_tokens": 2762266,
+        "output_tokens": 43186,
+        "tasks": 15
+      },
+      "2026-06-07": {
+        "input_tokens": 566977,
+        "output_tokens": 1785,
+        "tasks": 3
+      },
+      "2026-06-08": {
+        "input_tokens": 96261,
+        "output_tokens": 1003,
+        "tasks": 2
+      },
+      "2026-06-11": {
+        "input_tokens": 97140,
+        "output_tokens": 37,
+        "tasks": 1
+      },
+      "2026-07-19": {
+        "input_tokens": 189879,
+        "output_tokens": 2369,
+        "tasks": 6
+      },
+      "2026-07-20": {
+        "input_tokens": 74998,
+        "output_tokens": 2,
+        "tasks": 1
+      }
+    },
+    "last_updated": 1784595499,
+    "total": {
+      "input_tokens": 4171160,
+      "output_tokens": 48432,
+      "tasks": 36
+    }
+  }
+}

@@ -1,0 +1,176 @@
+version: '3.8'
+
+# ClokyOS Pilot - Mac Mini M4
+# Despliegue piloto: POS (Laravel 9) + PostgreSQL 16 + Redis 7 + Nginx
+# Stack: PHP 8.3 + Laravel 11 (upgrade de Laravel 9)
+
+services:
+  # ============================================
+  # APP - Laravel 11 (PHP 8.3)
+  # ============================================
+  app:
+    build:
+      context: ./app_build
+      dockerfile: Dockerfile
+    container_name: clokyos-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./app_data:/var/www/html
+      - ./php-custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - clokyos
+    depends_on:
+      - db
+      - redis
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_NAME="ClokyOS"
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=clokyos_pos
+      - DB_USERNAME=clokyos
+      - DB_PASSWORD_FILE=/run/secrets/db_password
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET_FILE=/run/secrets/jwt_secret
+    secrets:
+      - db_password
+      - jwt_secret
+    healthcheck:
+      test: ["CMD", "php", "-r", "require 'vendor/autoload.php'; exit(0);"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ============================================
+  # DB - PostgreSQL 16
+  # ============================================
+  db:
+    image: postgres:16-alpine
+    container_name: clokyos-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: clokyos
+      POSTGRES_DB: clokyos_pos
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - clokyos
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clokyos"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ============================================
+  # CACHE - Redis 7
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: clokyos-redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - clokyos
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # PROXY - Nginx
+  # ============================================
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: clokyos-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - clokyos
+    depends_on:
+      - app
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ============================================
+  # QUEUE - Laravel Queue Worker
+  # ============================================
+  queue:
+    build:
+      context: ./app_build
+      dockerfile: Dockerfile
+    container_name: clokyos-queue
+    restart: unless-stopped
+    working_dir: /var/www/html
+    command: php artisan queue:work --tries=3 --timeout=90
+    volumes:
+      - ./app_data:/var/www/html
+    networks:
+      - clokyos
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=clokyos_pos
+      - DB_USERNAME=clokyos
+      - REDIS_HOST=redis
+
+  # ============================================
+  # MONITOR - Health Check
+  # ============================================
+  monitor:
+    image: curlimages/curl:latest
+    container_name: clokyos-monitor
+    restart: unless-stopped
+    command: >
+      sh -c '
+      while true; do
+        echo "=== ClokyOS Health Check ==="
+        echo "App: $(curl -s -o /dev/null -w "%{http_code}" http://app:8000/health 2>/dev/null || echo "down")"
+        echo "DB: $(pg_isready -h db -p 5432 -U clokyos 2>/dev/null && echo "up" || echo "down")"
+        echo "Redis: $(redis-cli -h redis ping 2>/dev/null || echo "down")"
+        echo "=========================="
+        sleep 60
+      done
+    networks:
+      - clokyos
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  clokyos:
+    driver: bridge
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt

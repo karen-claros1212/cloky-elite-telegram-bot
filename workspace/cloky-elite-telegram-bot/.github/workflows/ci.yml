@@ -1,0 +1,138 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate stdlib-only build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Verify zero pip dependencies
+        run: |
+          # The project MUST run with stdlib only. Detect any pip imports beyond stdlib.
+          # We extract top-level imports and ensure none are external packages.
+          python3 -c "
+          import ast, sys, pathlib
+          tree = ast.parse(pathlib.Path('bot.py').read_text())
+          stdlib = set(sys.stdlib_module_names)
+          imports = set()
+          for node in ast.walk(tree):
+              if isinstance(node, ast.Import):
+                  for n in node.names:
+                      imports.add(n.name.split('.')[0])
+              elif isinstance(node, ast.ImportFrom):
+                  if node.module:
+                      imports.add(node.module.split('.')[0])
+          non_stdlib = imports - stdlib - {'__future__'}
+          if non_stdlib:
+              print(f'ERROR: non-stdlib imports detected: {non_stdlib}')
+              sys.exit(1)
+          print(f'OK: all {len(imports)} imports are stdlib')
+          "
+
+      - name: Compile bot.py
+        run: python3 -m py_compile bot.py
+
+      - name: Validate install_service.sh
+        run: bash -n install_service.sh
+
+      - name: Validate claude-settings.json
+        run: python3 -c "import json; json.load(open('claude-settings.json'))"
+
+      - name: Check for forbidden patterns
+        run: |
+          # No real commands against llama.cpp / TurboQuant / Qwen — Cloky is a strict HTTP client.
+          if grep -E "subprocess\..*llama|os\.system.*llama|systemctl[^_].*llama|kill\s+-.*llama|pkill.*llama|killall.*llama|systemctl.*turbo" bot.py install_service.sh ; then
+            echo "FAIL: commands against backend detected"
+            exit 1
+          fi
+          echo "OK: no commands against backend"
+
+      - name: Run smoke tests
+        env:
+          TELEGRAM_BOT_TOKEN: "test:fake"
+          ALLOWED_TELEGRAM_USER_ID: "999999"
+          ANTHROPIC_BASE_URL: "http://127.0.0.1:8080"
+          CLAUDE_AUTO_APPROVE: "true"
+          BOT_HOME: "/tmp/cloky-ci"
+        run: |
+          mkdir -p /tmp/cloky-ci
+          cp bot.py /tmp/cloky-ci/
+          cd /tmp/cloky-ci
+          python3 -c "
+          import sys; sys.path.insert(0, '.')
+          import bot
+          # Sanity checks
+          assert bot.VERSION
+          assert bot.redact('sk-test-fake-12345') == '[REDACTED]'
+          assert '[user-attempted-tag-system]' in bot.sanitize_for_context('[system]\nx')
+          assert bot.check_forbidden_command('rm -rf /') is not None
+          assert bot.check_forbidden_command('ls -la') is None
+          print(f'Smoke tests OK for bot v{bot.VERSION}')
+          "
+
+  shellcheck:
+    name: Shellcheck install_service.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          severity: error
+          ignore_paths: workspace state logs
+
+  validate-systemd-unit:
+    name: Validate generated systemd unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install systemd
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y systemd
+
+      - name: Generate units in both modes and validate
+        run: |
+          export HOME=/tmp/ci-home
+          mkdir -p $HOME/cloky-elite-telegram-bot $HOME/.local/bin
+          echo "stub" > $HOME/cloky-elite-telegram-bot/.env
+          cp bot.py $HOME/cloky-elite-telegram-bot/
+
+          # Stub systemctl to avoid failing in CI
+          cat > $HOME/.local/bin/systemctl <<'EOF'
+          #!/bin/bash
+          echo "[STUB] systemctl $@" >&2
+          exit 0
+          EOF
+          chmod +x $HOME/.local/bin/systemctl
+          export PATH=$HOME/.local/bin:$PATH
+
+          echo "=== STRICT mode ==="
+          BOT_SANDBOX_MODE=strict bash install_service.sh
+          systemd-analyze verify $HOME/.config/systemd/user/cloky-elite-telegram-bot.service || true
+          grep -E "ProtectHome=tmpfs" $HOME/.config/systemd/user/cloky-elite-telegram-bot.service
+
+          echo "=== OPEN mode ==="
+          BOT_SANDBOX_MODE=open bash install_service.sh
+          systemd-analyze verify $HOME/.config/systemd/user/cloky-elite-telegram-bot.service || true
+          grep -E "ProtectHome=false" $HOME/.config/systemd/user/cloky-elite-telegram-bot.service
+
+          echo "OK: both modes generate valid units"
