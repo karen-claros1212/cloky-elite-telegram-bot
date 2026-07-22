@@ -1,4 +1,4 @@
-# Cloky Elite Telegram Bot v2.2.1
+# Cloky Elite Telegram Bot v2.2.2
 
 Bot Telegram autónomo + Claude Code CLI + Backend Anthropic-compatible local.
 
@@ -6,7 +6,7 @@ Arquitectura: **Telegram → bot.py → Claude Code CLI → llama-server :8080**
 
 Sin proxy intermedio. Sin adapter_proxy.py. Sin FORCE_PERMISSION_MODE.
 
-## Cambios v2.2.0 → v2.2.1
+## Cambios v2.2.0 → v2.2.2
 
 **Streaming:** Los deltas parciales, texto de asistente y resultado final se separan en buckets distintos. El resultado final tiene prioridad sobre el streaming parcial. No se mezclan más.
 
@@ -16,7 +16,7 @@ Sin proxy intermedio. Sin adapter_proxy.py. Sin FORCE_PERMISSION_MODE.
 
 **Health retry:** Si `/health` devuelve 503 al arrancar, reintentá 5 veces antes de warning.
 
-**Modos:** `FORCE_PERMISSION_MODE` eliminado de `.env` (v2.2.1 no lo implementa). `/bypass` persiste `bypassPermissions`.
+**Modos:** `FORCE_PERMISSION_MODE` eliminado de `.env` (v2.2.2 no lo implementa). `/bypass` persiste `bypassPermissions`.
 
 **Sesiones:** `/newsession` registra `NATIVE_SESSION_ROTATE`. El primer mensaje usa `FIRST_TURN`, los siguientes `RESUME`. Sin `--fork-session`.
 
@@ -85,7 +85,7 @@ cp bot.py bot.py.bak.v2.2.0
 cp install_service.sh install_service.sh.bak.v2.2.0
 
 # Copiar archivos nuevos
-# (bot.py, install_service.sh actualizados a v2.2.1)
+# (bot.py, install_service.sh actualizados a v2.2.2)
 
 # Reiniciar
 systemctl --user daemon-reload
