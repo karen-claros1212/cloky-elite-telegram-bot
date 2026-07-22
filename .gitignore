@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# State files that may contain secrets
+state/*.json
+state/*.jsonl
+
+# Logs
+logs/*.log
+
+# Backups
+*.bak*
+*.backup*
+bot.py.backup*
+
+# Claude Code workspace internals
+workspace/cloky-elite-telegram-bot/.claude/
+workspace/cloky-elite-telegram-bot/.env
+
+# Uploads
+workspace/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Submodule content (not the link)
+workspace/nexus-ai/.git/
