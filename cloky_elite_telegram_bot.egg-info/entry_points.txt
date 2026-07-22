@@ -1,0 +1,3 @@
+[console_scripts]
+cloky = cloky.app:main
+cloky-doctor = cloky.doctor:main

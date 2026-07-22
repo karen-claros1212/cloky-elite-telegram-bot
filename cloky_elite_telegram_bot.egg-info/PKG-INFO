@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: cloky-elite-telegram-bot
+Version: 3.0.0rc1
+Summary: Enterprise Telegram control plane for Claude Code and Anthropic-compatible local LLM gateways
+Requires-Python: >=3.11
+Requires-Dist: claude-agent-sdk<0.2,>=0.1.80
+Requires-Dist: python-telegram-bot[rate-limiter]<23,>=22.0

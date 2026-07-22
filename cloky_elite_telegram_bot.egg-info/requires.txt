@@ -1,0 +1,2 @@
+claude-agent-sdk<0.2,>=0.1.80
+python-telegram-bot[rate-limiter]<23,>=22.0

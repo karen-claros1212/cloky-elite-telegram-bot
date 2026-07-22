@@ -1,0 +1,3 @@
+"""Cloky Enterprise."""
+
+__version__ = "3.0.0-rc1"
