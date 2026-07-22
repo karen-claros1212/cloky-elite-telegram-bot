@@ -2081,47 +2081,30 @@ def fallback_from_outputs(stdout_text: str, stderr_text: str, return_code: int |
         if not is_output_garbage(joined):
             return redact(sanitize_output(joined))
 
-    # Pase 2: walker recursivo sobre bloques type=text
-    parts: list[str] = []
-
-    def walk(node: Any, depth: int = 0) -> None:
-        if depth > 20:
-            return
-        if isinstance(node, dict):
-            if node.get("type") in {"tool_use", "tool_result"}:
-                return
-            if node.get("type") == "text" and isinstance(node.get("text"), str):
-                if usable(node["text"]):
-                    parts.append(node["text"].strip())
-                return
-            for v in node.values():
-                walk(v, depth + 1)
-        elif isinstance(node, list):
-            for item in node:
-                walk(item, depth + 1)
-        elif isinstance(node, str) and len(node) > 20 and usable(node):
-            parts.append(node.strip())
-
+    # Pase 2: solo campos tipados conocidos (sin walker recursivo)
+    # FIX: el walker anterior caminaba campos arbitrarios del JSON, así que
+    # cualquier campo desconocido podía terminar en el chat. Ahora solo
+    # lee rutas tipadas: result, summary, message, content, text.
+    found: list[str] = []
     for raw in stdout_text.splitlines():
         try:
             obj = json.loads(raw)
         except Exception:
             continue
-        if isinstance(obj, dict) and obj.get("type") in METADATA_TYPES:
+        if not isinstance(obj, dict):
             continue
-        walk(obj)
-
-    if parts:
-        seen: set[str] = set()
-        uniq: list[str] = []
-        for x in parts:
-            k = x[:120]
-            if k not in seen:
-                seen.add(k)
-                uniq.append(x)
-        joined = "\n\n".join(uniq)[-12000:]
-        if not is_output_garbage(joined):
-            return redact(sanitize_output(joined))
+        for key in ("result", "summary", "message", "content", "text"):
+            v = obj.get(key)
+            if isinstance(v, str) and usable(v):
+                found.append(v.strip())
+            elif isinstance(v, list):
+                for item in v:
+                    if isinstance(item, dict) and item.get("type") == "text":
+                        text_val = item.get("text")
+                        if isinstance(text_val, str) and usable(text_val):
+                            found.append(text_val.strip())
+                    elif isinstance(item, str) and usable(item):
+                        found.append(item.strip())
 
     # Pase 3: sin texto legible — informar, NO volcar
     out = ["Claude Code finalizó sin mensaje visible."]
@@ -2231,8 +2214,12 @@ def _run_claude_task_inner(user_id: str, chat_id: int, message_id: int, user_tex
     turn_label = "RESUME" if is_continuation else "FIRST_TURN"
 
     # v1.8.0: leer modo del USUARIO en lugar de constante global.
-    # Default fallback a CLAUDE_DEFAULT_PERMISSION_MODE si nunca se seteó.
+    # v2.2.1: no usar FORCE_PERMISSION_MODE (v2.2.1 no lo implementa).
     user_permission_mode = get_user_mode(user_id)
+    if not user_permission_mode:
+        # Default a bypassPermissions si nunca se seteó
+        user_permission_mode = CLAUDE_DEFAULT_PERMISSION_MODE
+        set_user_mode(user_id, user_permission_mode)
 
     # Construir command base.
     #
@@ -2274,7 +2261,11 @@ def _run_claude_task_inner(user_id: str, chat_id: int, message_id: int, user_tex
 
     stdout_lines: list[str] = []
     stderr_lines: list[str] = []
-    visible_parts: list[str] = []
+    # Streaming: separar delta parcial, texto de asistente, resultado final
+    partial_text: list[str] = []
+    assistant_text: list[str] = []
+    result_text: list[str] = []
+    sentinel_detected: bool = False
     status = "Procesando con Claude Code..."
     process: subprocess.Popen[str] | None = None
     started = time.time()
@@ -2378,36 +2369,51 @@ def _run_claude_task_inner(user_id: str, chat_id: int, message_id: int, user_tex
                 continue
 
             if label == "stdout":
-                stdout_lines.append(line)
-                try:
-                    _i, _o = extract_usage(line)
-                    if _i or _o:
-                        # Snapshots acumulativos: el mayor gana, NO se suman.
-                        tokens_in = max(tokens_in, _i)
-                        tokens_out = max(tokens_out, _o)
-                except Exception:
-                    pass
-                visible, new_status = parse_stream_line(line)
-                if new_status:
-                    status = new_status
-                    with task_lock:
-                        task = running_tasks.get(user_id)
-                        if isinstance(task, RunningTask):
-                            task.last_status = new_status
-                            task.last_progress_at = time.time()
-                if visible:
-                    visible_parts.append(visible)
-                    # v1.6 S2.1: streaming incremental a Telegram
-                    if streamer is not None:
-                        try:
-                            # Solo arrancar a editar cuando tenemos contenido mínimo
-                            buf_so_far = "\n\n".join(visible_parts)
-                            if len(buf_so_far) >= STREAM_MIN_CHUNK_LEN:
-                                # Append solo el chunk nuevo
-                                streamer.append(visible + "\n\n")
-                                streamed_chars = len(buf_so_far)
-                        except Exception as exc:
-                            log(f"STREAM_ERROR {type(exc).__name__}: {exc}")
+                 stdout_lines.append(line)
+                 try:
+                     _i, _o = extract_usage(line)
+                     if _i or _o:
+                         # Snapshots acumulativos: el mayor gana, NO se suman.
+                         tokens_in = max(tokens_in, _i)
+                         tokens_out = max(tokens_out, _o)
+                 except Exception:
+                     pass
+                 etype = None
+                 visible, new_status = parse_stream_line(line)
+                 # Extraer etype para clasificación posterior
+                 if line.startswith("{"):
+                     try:
+                         obj = json.loads(line)
+                         etype = str(obj.get("type", ""))
+                     except Exception:
+                         pass
+                 if new_status:
+                     status = new_status
+                     with task_lock:
+                         task = running_tasks.get(user_id)
+                         if isinstance(task, RunningTask):
+                             task.last_status = new_status
+                             task.last_progress_at = time.time()
+                 if visible:
+                     # Classify into partial, assistant, or result buckets
+                     # to avoid mixing streaming deltas with final output
+                     if new_status == "Error":
+                         assistant_text.append(visible)
+                     elif etype == "result":
+                         result_text.append(visible)
+                     else:
+                         partial_text.append(visible)
+                     # v1.6 S2.1: streaming incremental a Telegram
+                     if streamer is not None:
+                         try:
+                             # Solo arrancar a editar cuando tenemos contenido mínimo
+                             buf_so_far = "\\n\\n".join(partial_text)
+                             if len(buf_so_far) >= STREAM_MIN_CHUNK_LEN:
+                                 # Append solo el chunk nuevo
+                                 streamer.append(visible + "\\n\\n")
+                                 streamed_chars = len(buf_so_far)
+                         except Exception as exc:
+                             log(f"STREAM_ERROR {type(exc).__name__}: {exc}")
             else:
                 stderr_lines.append(line)
                 if "error" in line.lower() or "timeout" in line.lower():
@@ -2437,20 +2443,37 @@ def _run_claude_task_inner(user_id: str, chat_id: int, message_id: int, user_tex
         stdout_text = "\n".join(stdout_lines)
         stderr_text = "\n".join(stderr_lines)
 
-        # Patch 4: dedup por hash sha256.
-        seen_hashes: set[str] = set()
-        unique_parts: list[str] = []
-        for part in visible_parts:
-            normalized = part.strip()
-            if not normalized:
-                continue
-            h = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
-            if h in seen_hashes:
-                continue
-            seen_hashes.add(h)
-            unique_parts.append(normalized)
+        # === FIX: Streaming dedup separado + composición final limpia ===
+        # Dedup parcial por hash sha256 (solo dentro de cada bucket)
+        def dedup(parts: list[str]) -> list[str]:
+            seen: set[str] = set()
+            unique: list[str] = []
+            for part in parts:
+                normalized = part.strip()
+                if not normalized:
+                    continue
+                h = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+                if h in seen:
+                    continue
+                seen.add(h)
+                unique.append(normalized)
+            return unique
 
-        final_text = "\n\n".join(unique_parts).strip()
+        partial_text = dedup(partial_text)
+        assistant_text = dedup(assistant_text)
+        result_text = dedup(result_text)
+
+        # Composición final: result > assistant > partial (prioridad al resultado)
+        final_text = result_text[-1] if result_text else None
+        if not final_text and assistant_text:
+            final_text = "\n\n".join(assistant_text).strip()
+        if not final_text and partial_text:
+            final_text = "\n\n".join(partial_text).strip()
+
+        # === FIX: Sentinel "No response requested." ===
+        if is_sentinel_output(final_text or ""):
+            sentinel_detected = True
+            final_text = "⚠️ La sesión no produjo respuesta visible.\n\nProbá mandando un prompt más específico o usá /newsession para empezar de cero."
 
         if not final_text:
             final_text = fallback_from_outputs(stdout_text, stderr_text, return_code)
@@ -3704,17 +3727,39 @@ def preflight_checks() -> None:
         except Exception as exc:
             log(f"PREFLIGHT_WARN claude --version error: {type(exc).__name__}: {exc}")
 
-    # 2. Backend Qwen accesible
-    try:
-        req = urllib.request.Request(
-            f"{QWEN_BASE_URL}/health",
-            headers={"Authorization": f"Bearer {QWEN_API_KEY}"},
-            method="GET",
-        )
-        with urllib.request.urlopen(req, timeout=5) as response:
-            log(f"PREFLIGHT_OK backend {QWEN_BASE_URL} HTTP {response.status}")
-    except Exception as exc:
-        log(f"PREFLIGHT_WARN backend {QWEN_BASE_URL} no responde: {type(exc).__name__}: {exc}")
+    # 2. Backend Qwen accesible (retry x5 si devuelve 503 en arranque)
+    health_ok = False
+    for attempt in range(5):
+        try:
+            req = urllib.request.Request(
+                f"{QWEN_BASE_URL}/health",
+                headers={"Authorization": f"Bearer {QWEN_API_KEY}"},
+                method="GET",
+            )
+            with urllib.request.urlopen(req, timeout=5) as response:
+                if response.status == 503 and attempt < 4:
+                    log(f"PREFLIGHT_WAIT backend 503 (intento {attempt+1}/5), reintentando en 2s...")
+                    time.sleep(2)
+                    continue
+                log(f"PREFLIGHT_OK backend {QWEN_BASE_URL} HTTP {response.status}")
+                health_ok = True
+                break
+        except urllib.error.HTTPError as exc:
+            if exc.code == 503 and attempt < 4:
+                log(f"PREFLIGHT_WAIT backend 503 (intento {attempt+1}/5), reintentando en 2s...")
+                time.sleep(2)
+                continue
+            log(f"PREFLIGHT_WARN backend {QWEN_BASE_URL} HTTP {exc.code}")
+            break
+        except Exception as exc:
+            if attempt < 4:
+                log(f"PREFLIGHT_WAIT backend error (intento {attempt+1}/5): {type(exc).__name__}, reintentando en 2s...")
+                time.sleep(2)
+                continue
+            log(f"PREFLIGHT_WARN backend {QWEN_BASE_URL} no responde: {type(exc).__name__}: {exc}")
+            break
+    if not health_ok:
+        log(f"PREFLIGHT_WARN backend {QWEN_BASE_URL} no se recuperó tras 5 intentos")
 
     # 3. Workspace escribible
     test_file = WORKSPACE_DIR / ".write_test"

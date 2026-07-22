@@ -1,27 +1,9 @@
 #!/usr/bin/env bash
 #
-# install_service.sh — Cloky Elite Telegram Bot v1.5
+# install_service.sh — Cloky Elite Telegram Bot v2.2.1
 #
-# Sandbox CONFIGURABLE vía variable de entorno BOT_SANDBOX_MODE:
-#
-#   strict (default v1.4): ProtectHome=tmpfs, BindPaths estrictos.
-#                          Solo workspace y ~/.claude accesibles.
-#                          Recomendado para uso autónomo en producción.
-#
-#   open  (v1.5):          Acceso completo a $HOME (/home/jesus/*).
-#                          Permite auditar/refactorizar cualquier proyecto.
-#                          Mantiene NoNewPrivileges, Capabilities=0, syscall filter.
-#                          Usuario asume responsabilidad del scope ampliado.
-#
-# Para cambiar modo:
-#   BOT_SANDBOX_MODE=open bash install_service.sh
-#   BOT_SANDBOX_MODE=strict bash install_service.sh
-#
-# Sin variable: usa $HOME/cloky-elite-telegram-bot/.sandbox_mode si existe,
-# o "strict" por defecto.
-#
-# El servicio NO toca llama.cpp / TurboQuant / Qwen.
-# Solo ejecuta bot.py que es cliente HTTP del backend local.
+# Arquitectura: Telegram → bot.py → Claude Code CLI → llama-server :8080
+# Sin proxy intermedio. Sin adapter_proxy.py.
 #
 set -euo pipefail
 
@@ -50,16 +32,8 @@ case "$SANDBOX_MODE" in
 esac
 
 echo "============================================================"
-echo "  Cloky Bot v1.5 — Sandbox mode: $SANDBOX_MODE"
+echo "  Cloky Bot v2.2.1"
 echo "============================================================"
-if [ "$SANDBOX_MODE" = "open" ]; then
-  echo "  ⚠  Modo OPEN: el bot tendrá acceso a TODO \$HOME."
-  echo "  ⚠  Esto incluye proyectos, .ssh, .env de otros servicios."
-  echo "  ⚠  El usuario asume responsabilidad del scope ampliado."
-  echo "  ⚠  Para volver al modo estricto:"
-  echo "  ⚠    BOT_SANDBOX_MODE=strict bash $0"
-  echo "============================================================"
-fi
 
 mkdir -p "$SERVICE_DIR"
 
@@ -190,7 +164,7 @@ fi
 # --- Generar unit file ---
 cat > "$SERVICE_FILE" <<EOF
 [Unit]
-Description=Cloky Elite Telegram Bot v1.5 - Claude Code local bridge (sandbox: $SANDBOX_MODE)
+Description=Cloky Elite Telegram Bot v2.2.1 — Claude Code local bridge
 After=network.target
 Documentation=https://github.com/anthropics/claude-code
 
